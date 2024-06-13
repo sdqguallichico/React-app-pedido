@@ -1,7 +1,9 @@
-function Productos() {
-    return(
-        <div>productos paginas Alo</div>
+
+import { ProductosListar } from "../components/ProductosListar"
+
+export function Productos() {
+    
+    return (
+        <ProductosListar />
     )
 }
-
-export default Productos;

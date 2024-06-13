@@ -1,51 +1,27 @@
-import { Button, Layout, Flex } from "antd";
-import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
+import React from "react";
+import {
+  BrowserRouter,
+  Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { Productos } from "./pages/Productos";
+import { ProductosCrear } from "./pages/ProductosCrear";
+import { Inicio } from "./pages/inicio";
+import { Navigation } from "./components/Navigation";
 
-import React, { useState } from "react";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import CustomHeader from "./components/Header";
-import "./App.css";
-import { SiTrueup } from "react-icons/si";
-import SideContent from "./components/SideContent";
-import MainContent from "./components/MainContent";
-import AppRoutes from "./Routes";
-
-const { Sider, Header, Content } = Layout;
 function App() {
-  const [collapsed, setCollapsed] = useState(true);
   return (
-    <Layout>
-      
-      <Sider
-        theme="light"
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        className="sider"
-      >
-        <AppRoutes />
-        <Sidebar className="us" />
-
-        <Button
-          type="text"
-          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          onClick={() => setCollapsed(!collapsed)}
-          className="triger-btn"
-        />
-      </Sider>
-
-      <Layout>
-        <Header className="header">
-          <CustomHeader />
-        </Header>
-        <Content className="content">
-          <Flex gap="large">
-            <MainContent />
-          </Flex>
-        </Content>
-      </Layout>
-    </Layout>
+    <BrowserRouter>
+    <Navigation />
+      <Routes>
+        <Route path="/" element={<Navigate to="/inicio" />} />
+        <Route path="/inicio" element={<Inicio />} />
+        <Route path="/productos" element={<Productos />} />
+        <Route path="/productosc" element={<ProductosCrear />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

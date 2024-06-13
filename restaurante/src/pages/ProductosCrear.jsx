@@ -1,5 +1,5 @@
 export function ProductosCrear() {
     return(
-        <div>Crear Productos</div>
+        <div>Crear Productos Aqui</div>
     )
 }
