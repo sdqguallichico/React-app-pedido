@@ -19,26 +19,27 @@ const Sidebar = () => {
           icon: <UserOutlined />,
           label: 'Dashboard',
           
+          
         },
         {
           key: '2',
           icon: <CarryOutOutlined />,
-          label: 'Mis Ordenes',
+          label: 'Pedidos',
         },
         {
           key: '3',
           icon: <OrderedListOutlined />,
-          label: 'Hacer',
+          label: 'Restaurantes',
         },
         {
           key: '4',
           icon: <ProfileOutlined />,
-          label: 'Perfil',
+          label: 'Productos',
         },
         {
           key: '5',
           icon: <SettingOutlined />,
-          label: 'Configuraciones',
+          label: 'Clientes',
         },
         {
           key: '6',

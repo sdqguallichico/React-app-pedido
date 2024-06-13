@@ -1,17 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter , Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 
 import Productos from "./pages/Productos";
 
 const AppRoutes = () => (
-  <Router>
+  <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Dashboard />} />
-
+      
       <Route path="/productos" element={<Productos />} />
     </Routes>
-  </Router>
+  </BrowserRouter>
 );
 
 export default AppRoutes;

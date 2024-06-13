@@ -13,9 +13,10 @@ import AppRoutes from "./Routes";
 
 const { Sider, Header, Content } = Layout;
 function App() {
-  const [collapsed, setCollapsed] = useState(SiTrueup);
+  const [collapsed, setCollapsed] = useState(true);
   return (
     <Layout>
+      
       <Sider
         theme="light"
         trigger={null}
@@ -23,9 +24,9 @@ function App() {
         collapsed={collapsed}
         className="sider"
       >
-       
+        <AppRoutes />
         <Sidebar className="us" />
-       
+
         <Button
           type="text"
           icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
