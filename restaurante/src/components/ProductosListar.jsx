@@ -7,10 +7,6 @@ import ProductosPage from "./ProductosCard";
 export function ProductosListar() {
   const [productos, setProductos] = useState([]);
 
-  const onDelete = (id) => {
-    const updatedProductos = productos.filter((producto) => producto.id !== id);
-    setProductos(updatedProductos);
-  };
 
   useEffect(() => {
     async function cargarP() {

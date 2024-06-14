@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Typography, Layout, Button, Row, Col, Modal  } from "antd";
 const { Title, Text } = Typography;
 const { Header, Content } = Layout;
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { borrarProducto } from "../api/producto.api";
+import { borrarProducto, getAllProduct } from "../api/producto.api";
 const { confirm } = Modal;
 
 export function ProductosCard({ producto }) {
   const navigate = useNavigate();
+
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    cargarProductos();
+  }, []);
+
+  const cargarProductos = async () => {
+    try {
+      const response = await getAllProduct();
+      setProductos(response.data);
+    } catch (error) {
+      console.error("Error al cargar los productos:", error);
+    }
+  };
+
+
+
   const handleEliminar = () => {
     Modal.confirm({
       title: "Confirmar Eliminación",
@@ -72,9 +90,37 @@ export function ProductosCard({ producto }) {
   );
 }
 
-export default function ProductosPage({ productos }) {
+const ProductosPage=()=> {
   const navigate = useNavigate();
-  
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    cargarProductos();
+  }, []);
+
+  const cargarProductos = async () => {
+    try {
+      const response = await getAllProduct();
+      setProductos(response.data);
+    } catch (error) {
+      console.error("Error al cargar los productos:", error);
+    }
+  };
+
+  const handleEliminar = async (id) => {
+    try {
+      await borrarProducto(id);
+      cargarProductos(); // Vuelve a cargar los productos después de eliminar
+      Modal.success({
+        content: "Producto eliminado exitosamente",
+      });
+    } catch (error) {
+      Modal.error({
+        title: "Error al eliminar",
+        content: `Ocurrió un error al eliminar el producto: ${error.message}`,
+      });
+    }
+  };
 
   return (
     <Layout>
@@ -87,7 +133,7 @@ export default function ProductosPage({ productos }) {
         <Row gutter={[16, 16]}>
           {productos.map((producto) => (
             <Col key={producto.id}>
-              <ProductosCard producto={producto} />
+              <ProductosCard producto={producto} onDelete={() => handleEliminar(producto.id)} />
             </Col>
           ))}
         </Row>
@@ -95,3 +141,5 @@ export default function ProductosPage({ productos }) {
     </Layout>
   );
 }
+
+export default ProductosPage;
