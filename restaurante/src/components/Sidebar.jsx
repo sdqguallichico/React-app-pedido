@@ -33,6 +33,8 @@ const Sidebar = () => {
           key: '3',
           icon: <OrderedListOutlined />,
           label: 'Restaurantes',
+          onClick:() => navigate('/restaurantes')
+
         },
         {
           key: '4',

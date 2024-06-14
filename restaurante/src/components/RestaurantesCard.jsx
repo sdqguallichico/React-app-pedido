@@ -4,24 +4,24 @@ import { Card, Typography, Layout, Button, Row, Col, Modal  } from "antd";
 const { Title, Text } = Typography;
 const { Header, Content } = Layout;
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { borrarProducto, getAllProduct } from "../api/producto.api";
+import { borrarRestaurante, getAllRestaurantes } from "../api/restaurante.api";
 const { confirm } = Modal;
 
-export function ProductosCard({ producto }) {
+export function RestaurantesCard({ restaurante }) {
   const navigate = useNavigate();
 
-  const [productos, setProductos] = useState([]);
+  const [restaurantes, setRestaurantes] = useState([]);
 
   useEffect(() => {
-    cargarProductos();
+    cargarRestaurantes();
   }, []);
 
-  const cargarProductos = async () => {
+  const cargarRestaurantes = async () => {
     try {
-      const response = await getAllProduct();
-      setProductos(response.data);
+      const response = await getAllRestaurantes();
+      setRestaurantes(response.data);
     } catch (error) {
-      console.error("Error al cargar los productos:", error);
+      console.error("Error al cargar los restaurantes:", error);
     }
   };
 
@@ -31,23 +31,23 @@ export function ProductosCard({ producto }) {
     Modal.confirm({
       title: "Confirmar Eliminación",
       icon: <ExclamationCircleOutlined />,
-      content: `¿Estás seguro de eliminar el producto "${producto.nombre}"?`,
+      content: `¿Estás seguro de eliminar el restaurante "${restaurante.nombrerestaurante}"?`,
       okText: "Eliminar",
       okType: "danger",
       cancelText: "Cancelar",
       onOk() {
-        borrarProducto(producto.id)
+        borrarRestaurante(restaurante.idrestaurante)
           .then(() => {
             Modal.success({
-              content: "Producto eliminado exitosamente",
+              content: "Restaurante eliminado exitosamente",
             });
             // Aquí puedes redirigir a otra página o realizar alguna otra acción
-            navigate("/productos")
+            navigate("/restaurantes")
           })
           .catch((error) => {
             Modal.error({
               title: "Error al eliminar",
-              content: `Ocurrió un error al eliminar el producto: ${error.message}`,
+              content: `Ocurrió un error al eliminar el restaurante: ${error.message}`,
             });
           });
       },
@@ -63,22 +63,22 @@ export function ProductosCard({ producto }) {
     >
       <div className="card">
         <div className="card-content">
-          <h3>Producto: {producto.id}</h3>
+          <h3>{restaurante.idrestaurante} : {restaurante.nombrerestaurante}</h3>
           <p>
             <strong>Nombre: </strong>
-            {producto.nombre}
+            {restaurante.nombrerestaurante}
           </p>
           <p>
-            <strong>Descripcion: </strong> {producto.descripcion}
+            <strong>Direccion: </strong> {restaurante.direccion}
           </p>
           <p>
-            <strong>Tipo: </strong> {producto.precio}
+            <strong>Telefono: </strong> {restaurante.telefono}
           </p>
 
           <div className="actions">
             
             <button className="btn-edit" onClick={() => {
-        navigate("/productos/editar/" + producto.id);
+        navigate("/restaurantes/editar/" + restaurante.idrestaurante);
       }}>Modificar</button>
             <button className="btn-sup" onClick={handleEliminar}> Eliminar</button>
             
@@ -90,34 +90,34 @@ export function ProductosCard({ producto }) {
   );
 }
 
-const ProductosPage=()=> {
+const RestaurantesPage=()=> {
   const navigate = useNavigate();
-  const [productos, setProductos] = useState([]);
+  const [restaurantes, setRestaurantes] = useState([]);
 
   useEffect(() => {
-    cargarProductos();
+    cargarRestaurantes();
   }, []);
 
-  const cargarProductos = async () => {
+  const cargarRestaurantes = async () => {
     try {
-      const response = await getAllProduct();
-      setProductos(response.data);
+      const response = await getAllRestaurantes();
+      setRestaurantes(response.data);
     } catch (error) {
-      console.error("Error al cargar los productos:", error);
+      console.error("Error al cargar los restaurantes:", error);
     }
   };
 
-  const handleEliminar = async (id) => {
+  const handleEliminar = async (idrestaurante) => {
     try {
-      await borrarProducto(id);
-      cargarProductos(); // Vuelve a cargar los productos después de eliminar
+      await borrarRestaurante(idrestaurante);
+      cargarRestaurantes(); // Vuelve a cargar los productos después de eliminar
       Modal.success({
-        content: "Producto eliminado exitosamente",
+        content: "Restarante eliminado exitosamente",
       });
     } catch (error) {
       Modal.error({
         title: "Error al eliminar",
-        content: `Ocurrió un error al eliminar el producto: ${error.message}`,
+        content: `Ocurrió un error al eliminar el restarante: ${error.message}`,
       });
     }
   };
@@ -125,15 +125,15 @@ const ProductosPage=()=> {
   return (
     <Layout>
       <Header style={{ background: "#fff" }} className="hp">
-        <Button type="default" onClick={() => navigate("/productosc")}>
-          Crear Producto
+        <Button type="default" onClick={() => navigate("/restaurantesc")}>
+          Crear Restaurante
         </Button>
       </Header>
       <Content>
         <Row gutter={[16, 16]}>
-          {productos.map((producto) => (
-            <Col key={producto.id}>
-              <ProductosCard producto={producto} onDelete={() => handleEliminar(producto.id)} />
+          {restaurantes.map((restaurante) => (
+            <Col key={restaurante.idrestaurante}>
+              <RestaurantesCard restaurante={restaurante} onDelete={() => handleEliminar(restaurante.idrestaurante)} />
             </Col>
           ))}
         </Row>
@@ -142,4 +142,4 @@ const ProductosPage=()=> {
   );
 }
 
-export default ProductosPage;
+export default RestaurantesPage;

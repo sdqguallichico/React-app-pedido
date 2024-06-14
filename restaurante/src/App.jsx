@@ -10,11 +10,13 @@ import MainContent from "./components/MainContent";
 
 import Productos from "./pages/Productos";
 import Clientes from "./pages/Clientes"
+import Restaurantes from "./pages/Restaurantes"
 
 import "./App.css";
 import ProductosCrear from "./pages/ProductosCrear";
 import ClientesCrear from "./pages/ClientesCrear";
 import { Toaster } from "react-hot-toast";
+import RestaurantesCrear from "./pages/RestaurantesCrear";
 
 const { Sider, Header, Content } = Layout;
 
@@ -57,6 +59,13 @@ function App() {
               <Route path="/clientes" element={<Clientes />} />
               <Route path="/clientesc" element={<ClientesCrear />} />
               <Route path="/clientes/editar/:id" element={<ClientesCrear />} />
+
+              <Route path="/restaurantes" element={<Restaurantes />} />
+              <Route path="/restaurantesc" element={<RestaurantesCrear />} />
+              <Route path="/restaurantes/editar/:idrestaurante" element={<RestaurantesCrear />} />
+
+
+
 
 
 
