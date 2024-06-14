@@ -20,6 +20,8 @@ function App() {
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/productos" element={<Productos />} />
         <Route path="/productosc" element={<ProductosCrear />} />
+        <Route path="/productos/editar/:id" element={<ProductosCrear />} />
+
       </Routes>
     </BrowserRouter>
   );

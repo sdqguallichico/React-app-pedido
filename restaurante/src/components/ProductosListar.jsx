@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllProduct } from "../api/producto.api";
+import { ProductosCard } from "./ProductosCard";
 
 export function ProductosListar() {
     const [productos, setProductos] = useState([]);
@@ -16,10 +17,7 @@ export function ProductosListar() {
     return (
         <div>
             {productos.map(producto=>(
-                <div>
-                    <h1>{producto.nombre}</h1>
-                    <p>{producto.descripcion}</p>
-                </div>
+                <ProductosCard key={producto.id} producto={producto}/>
             ))}
         </div>
     )
