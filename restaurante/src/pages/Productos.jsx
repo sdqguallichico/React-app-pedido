@@ -1,9 +1,11 @@
-
+import React from "react"
 import { ProductosListar } from "../components/ProductosListar"
 
-export function Productos() {
+const Productos = () => {
     
     return (
         <ProductosListar />
     )
 }
+
+export default Productos;

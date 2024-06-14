@@ -9,7 +9,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast"; 
 
-export function ProductosCrear() {
+
+
+
+const ProductosCrear =()=> {
     const {
         register,
         handleSubmit,
@@ -111,3 +114,5 @@ export function ProductosCrear() {
         </div>
     );
 }
+
+export default ProductosCrear;

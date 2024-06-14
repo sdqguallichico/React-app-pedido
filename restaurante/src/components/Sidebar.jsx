@@ -2,8 +2,9 @@ import { Flex, Menu } from "antd";
 import React from "react";
 import { FaLeaf } from "react-icons/fa6";
 import { UserOutlined, ProfileOutlined, OrderedListOutlined, CarryOutOutlined, SettingOutlined, LoginOutlined} from '@ant-design/icons';
-
+import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
+  const navigate = useNavigate()
   
   return (
     <>
@@ -18,6 +19,8 @@ const Sidebar = () => {
           key: '1',
           icon: <UserOutlined />,
           label: 'Dashboard',
+          onClick:() => navigate('/dashboard')
+        
           
           
         },
@@ -35,6 +38,7 @@ const Sidebar = () => {
           key: '4',
           icon: <ProfileOutlined />,
           label: 'Productos',
+          onClick:() => navigate('/productos')
         },
         {
           key: '5',

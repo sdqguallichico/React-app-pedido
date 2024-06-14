@@ -44,3 +44,11 @@
     background-color: rgb(93, 153, 133) !important;
     color: #fff !important;
 }
+
+/* card productp */
+.flex-wrap-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
