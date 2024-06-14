@@ -9,9 +9,11 @@ import { Navigation } from "./components/Navigation";
 import MainContent from "./components/MainContent";
 
 import Productos from "./pages/Productos";
+import Clientes from "./pages/Clientes"
 
 import "./App.css";
 import ProductosCrear from "./pages/ProductosCrear";
+import ClientesCrear from "./pages/ClientesCrear";
 import { Toaster } from "react-hot-toast";
 
 const { Sider, Header, Content } = Layout;
@@ -47,12 +49,17 @@ function App() {
        
           <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
+
               <Route path="/productos" element={<Productos />} />
               <Route path="/productosc" element={<ProductosCrear />} />
-              <Route
-                path="/productos/editar/:id"
-                element={<ProductosCrear />}
-              />
+              <Route path="/productos/editar/:id"element={<ProductosCrear />}/>
+
+              <Route path="/clientes" element={<Clientes />} />
+              <Route path="/clientesc" element={<ClientesCrear />} />
+              <Route path="/clientes/editar/:id" element={<ClientesCrear />} />
+
+
+
               <Route path="/" element={<Dashboard />} />
             </Routes>
             <Toaster />

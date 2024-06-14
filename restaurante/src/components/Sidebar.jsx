@@ -44,6 +44,7 @@ const Sidebar = () => {
           key: '5',
           icon: <SettingOutlined />,
           label: 'Clientes',
+          onClick:() => navigate('/clientes')
         },
         {
           key: '6',
