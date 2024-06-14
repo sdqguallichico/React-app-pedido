@@ -17,7 +17,7 @@ import { Toaster } from "react-hot-toast";
 const { Sider, Header, Content } = Layout;
 
 function App() {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <Router>

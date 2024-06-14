@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import { getAllProduct } from "../api/producto.api";
-import { ProductosCard } from "./ProductosCard";
-import { Flex ,Layout} from "antd";
-import { Navigation } from "./Navigation";
-import CustomHeader from "./Header";
-const { Sider, Header, Content } = Layout;
+import { getAllProduct, borrarProducto } from "../api/producto.api";
+
+import ProductosPage from "./ProductosCard";
+
+
 export function ProductosListar() {
   const [productos, setProductos] = useState([]);
+
+  const onDelete = (id) => {
+    const updatedProductos = productos.filter((producto) => producto.id !== id);
+    setProductos(updatedProductos);
+  };
 
   useEffect(() => {
     async function cargarP() {
@@ -18,11 +22,6 @@ export function ProductosListar() {
   }, []);
 
   return (
-    
-    <Flex className="flex-wrap-container">
-      {productos.map((producto, index) => (
-        <ProductosCard key={index} producto={producto} />
-      ))}
-    </Flex>
+    <ProductosPage productos={productos} />
   );
 }
