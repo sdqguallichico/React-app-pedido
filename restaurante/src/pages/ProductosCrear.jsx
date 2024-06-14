@@ -7,6 +7,7 @@ import {
 } from "../api/producto.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast"; 
 
 export function ProductosCrear() {
     const {
@@ -21,8 +22,22 @@ export function ProductosCrear() {
     const onSubmit = handleSubmit(async (data) => {
         if (params.id) {
             await editarProducto(params.id, data);
+            toast.success('Producto Actualizado Con Exito',{
+                position: "bottom-center",
+                style: {
+                     background: "#101010",
+                     color: "#fff"
+                }
+            })
         } else {
             await crearProducto(data);
+            toast.success('Producto Creado Con Exito',{
+                position: "bottom-center",
+                style: {
+                     background: "#101010",
+                     color: "#fff"
+                }
+            })
         }
         navigate("/productos");
     });
@@ -79,6 +94,13 @@ export function ProductosCrear() {
                         const aceptado = window.confirm("estas seguro");
                         if (aceptado) {
                             await borrarProducto(params.id);
+                            toast.success('Producto Eliminado Con Exito',{
+                                position: "bottom-center",
+                                style: {
+                                     background: "#101010",
+                                     color: "#fff"
+                                }
+                            })
                             navigate("/productos");
                         }
                     }}
