@@ -18,7 +18,7 @@ export function PedidosCard({ pedido }) {
 
   const cargarPedidos = async () => {
     try {
-      const response = await getAllProduct();
+      const response = await getAllPedidos();
       setPedidos(response.data);
     } catch (error) {
       console.error("Error al cargar los Pedidos:", error);
