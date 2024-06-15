@@ -28,6 +28,8 @@ const Sidebar = () => {
           key: '2',
           icon: <CarryOutOutlined />,
           label: 'Pedidos',
+          onClick:() => navigate('/pedidos')
+
         },
         {
           key: '3',
