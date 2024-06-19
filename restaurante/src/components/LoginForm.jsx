@@ -30,17 +30,46 @@ function LoginForm({ setUser }) {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <div>
-        <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    <div className="container">
+  <div className="screen">
+    <div className="screen__content">
+      <form onSubmit={handleLogin} className="login">
+        <div className="login__field">
+          
+          
+          <input
+            type="email"
+            className="login__input"
+            name="email"
+            value={email} onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required="required"
+          />
+        </div>
+        <div className="login__field">
+          <input
+            type="password"
+            className="login__input"
+            name="password"
+            value={password} onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required="required"
+          />
+        </div>
+        <button className="button login__submit" type="submit" >
+          <span className="button__text">INGRESAR</span>
+        </button>
+       
+      </form>
+    </div>
+    <div className="screen__background">
+      <span className="screen__background__shape screen__background__shape4"></span>
+      <span className="screen__background__shape screen__background__shape3"></span>
+      <span className="screen__background__shape screen__background__shape2"></span>
+      <span className="screen__background__shape screen__background__shape1"></span>
+    </div>
+  </div>
+</div>
   );
 }
 

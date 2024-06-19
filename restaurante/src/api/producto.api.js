@@ -4,12 +4,17 @@ export const getAllProduct = () => {
     return axios.get('http://localhost:8084/productos/listar')
 }
 
+export const oBpr = () => {
+    return axios.get('http://localhost:8084/api/menu')
+}
+
+
 export const getbyId = (id) =>{
     return axios.get('http://localhost:8084/productos/obtenerplato/'+ id )
 }
 
 export const crearProducto = (producto) =>{
-    return axios.post('http://localhost:8084/productos/crearplato', producto)
+    return axios.post('http://localhost:8084/api/menu', producto)
 }
 
 export const borrarProducto = (id) =>{

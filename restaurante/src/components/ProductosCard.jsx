@@ -4,7 +4,7 @@ import { Card, Typography, Layout, Button, Row, Col, Modal  } from "antd";
 const { Title, Text } = Typography;
 const { Header, Content } = Layout;
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { borrarProducto, getAllProduct } from "../api/producto.api";
+import { borrarProducto, getAllProduct , oBpr} from "../api/producto.api";
 const { confirm } = Modal;
 
 export function ProductosCard({ producto }) {
@@ -18,7 +18,7 @@ export function ProductosCard({ producto }) {
 
   const cargarProductos = async () => {
     try {
-      const response = await getAllProduct();
+      const response = await oBpr();
       setProductos(response.data);
     } catch (error) {
       console.error("Error al cargar los productos:", error);
@@ -100,7 +100,7 @@ const ProductosPage=()=> {
 
   const cargarProductos = async () => {
     try {
-      const response = await getAllProduct();
+      const response = await oBpr();
       setProductos(response.data);
     } catch (error) {
       console.error("Error al cargar los productos:", error);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllProduct, borrarProducto } from "../api/producto.api";
+import { getAllProduct, borrarProducto , oBpr} from "../api/producto.api";
 
 import ProductosPage from "./ProductosCard";
 
@@ -10,7 +10,7 @@ export function ProductosListar() {
 
   useEffect(() => {
     async function cargarP() {
-      const res = await getAllProduct();
+      const res = await oBpr();
       setProductos(res.data);
     }
 
