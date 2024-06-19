@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes,Navigate } from "react-router-dom";
 import { Layout, Button,Flex } from "antd";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import Sidebar from "./components/Sidebar";
@@ -17,6 +17,7 @@ import "./App.css";
 import ProductosCrear from "./pages/ProductosCrear";
 import ClientesCrear from "./pages/ClientesCrear";
 import { Toaster } from "react-hot-toast";
+import LoginForm from "./components/LoginForm"
 import RestaurantesCrear from "./pages/RestaurantesCrear";
 import PedidosCrear from "./pages/PedidosCrear";
 
@@ -24,7 +25,7 @@ const { Sider, Header, Content } = Layout;
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
-
+  const [user, setUser] = useState(null);
   return (
     <Router>
       <Layout>
@@ -52,30 +53,21 @@ function App() {
           <Flex gap="large">
        
           <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-
-              <Route path="/productos" element={<Productos />} />
-              <Route path="/productosc" element={<ProductosCrear />} />
-              <Route path="/productos/editar/:id"element={<ProductosCrear />}/>
-
-              <Route path="/clientes" element={<Clientes />} />
-              <Route path="/clientesc" element={<ClientesCrear />} />
-              <Route path="/clientes/editar/:id" element={<ClientesCrear />} />
-
-              <Route path="/restaurantes" element={<Restaurantes />} />
-              <Route path="/restaurantesc" element={<RestaurantesCrear />} />
-              <Route path="/restaurantes/editar/:idrestaurante" element={<RestaurantesCrear />} />
-
-              <Route path="/pedidos" element={<Pedidos />} />
-              <Route path="/pedidosc" element={<PedidosCrear />} />
-              <Route path="/pedidos/editar/:id" element={<PedidosCrear />} />
-
-
-
-
-
-
-              <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<LoginForm setUser={setUser} />} />
+                <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+                <Route path="/productos" element={user ? <Productos /> : <Navigate to="/login" />} />
+                <Route path="/productosc" element={user ? <ProductosCrear /> : <Navigate to="/login" />} />
+                <Route path="/productos/editar/:id" element={user ? <ProductosCrear /> : <Navigate to="/login" />} />
+                <Route path="/clientes" element={user ? <Clientes /> : <Navigate to="/login" />} />
+                <Route path="/clientesc" element={user ? <ClientesCrear /> : <Navigate to="/login" />} />
+                <Route path="/clientes/editar/:id" element={user ? <ClientesCrear /> : <Navigate to="/login" />} />
+                <Route path="/restaurantes" element={user ? <Restaurantes /> : <Navigate to="/login" />} />
+                <Route path="/restaurantesc" element={user ? <RestaurantesCrear /> : <Navigate to="/login" />} />
+                <Route path="/restaurantes/editar/:idrestaurante" element={user ? <RestaurantesCrear /> : <Navigate to="/login" />} />
+                <Route path="/pedidos" element={user ? <Pedidos /> : <Navigate to="/login" />} />
+                <Route path="/pedidosc" element={user ? <PedidosCrear /> : <Navigate to="/login" />} />
+                <Route path="/pedidos/editar/:id" element={user ? <PedidosCrear /> : <Navigate to="/login" />} />
+                <Route path="/" element={<Navigate to="/login" />} />
             </Routes>
             <Toaster />
           </Flex>
